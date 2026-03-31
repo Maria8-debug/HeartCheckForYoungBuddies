@@ -1,0 +1,178 @@
+<Screen1>:
+    name: 'screen1'
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        padding: 10
+        text1: text1
+        text2: text2
+        Label:
+            text: '[b]'+'[color=#594712]' + 'Тест Руфье' + '[/color]' + '[/b]'
+            font_size: 25
+            markup: True
+            pos_hint: {'center_x': 0.5,'y' : 1}
+        Label:
+            text: '[color=#5e490f]' + '  С этим приложением вы сможете быстро проверить состояние сердца с \n помощью теста Руфье! Всё просто: \n \n   -сначала измерьте пульс за 15 секунд; \n \n   -затем выполните 30 приседаний за 45 секунд; \n \n   -после этого снова измерьте пульс — сначала за первые 15 секунд, \n потом сделайте 30‑секундный перерыв и ещё раз за последние 15 секунд.' + '[/color]'
+            pos_hint: {'center_x':0.5,'top':1}
+            markup: True
+        TextInput:
+            id: text2
+            hint_text: 'Ваше имя(это обязательное поле)'
+            multiline: False
+            size_hint: 0.9,0.2
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+        TextInput:
+            input_filter: 'int'
+            id: text1
+            hint_text: 'Ваш возраст(это обязательное поле, напишите ваш возраст целыми положительными числами)'
+            multiline: False
+            size_hint: 0.9,0.2
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+        Button:
+            background_color: '#5e490f'
+            text: 'Продолжить'
+            size_hint: 0.25,0.25
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+            on_release:
+                root.check_age()
+<Screen2>:
+    name: 'screen2'
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        padding: 10
+        Label:
+            text: '[b]'+'[color=#594712]' +  'Пульс в спокойном режиме' + '[/color]' + '[/b]'
+            font_size: 25
+            markup: True
+            pos_hint: {'center_x': 0.5,'y' : 1}
+        Label:
+            text: '[color=#594712]' + 'Замерьте пульс за 15 секунд.\n Результат запишите в соответствующее поле.' + '[/color]'
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+            markup: True
+        TextInput:
+            id: pulse
+            input_filter: 'int'
+            hint_text: 'Запишите пульс целыми положительными числами'
+            multiline: False
+            size_hint: 0.9,0.2
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+        Button:
+            background_color: '#5e490f'
+            text: "Продолжить"
+            size_hint: 0.25,0.25
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+            on_press:
+                root.next()
+<Screen3>:
+    name: 'screen3'
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        padding: 10
+        Label:
+            text: '[b]'+'[color=#594712]' + 'Приседания на время' + '[/color]' + '[/b]'
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+            markup: True
+            font_size: 25
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+            padding: 10
+            Label:
+                text: '[color=#594712]' + 'Выполните 30 приседаний за 45 секунд.\n Нажмите кнопку "Начать", чтобы запустить таймер.' + '[/color]'
+                pos_hint: {'center_x':0.5,'center_y':0.5}
+                markup: True
+            Label:
+                id: timer_label
+                text: '[color=#594712]' +'Время: 0 / 45 сек' + '[/color]'
+                font_size: 24
+                markup: True
+            Label:
+                id: status_label
+                text:  ''
+                font_size: 20
+                markup: True
+
+        Button:
+            background_color: '#5e490f'
+            id: squats_label
+            text: 'Начать'
+            size_hint: 0.25,0.25
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+            on_press:
+                root.start_exercise()
+                root.next()
+<Screen4>:
+    name: 'screen4'
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 2
+        padding: 10
+        Label:
+            text: '[b]'+ '[color=#594712]' + 'Замеряем пульс' + '[/color]' + '[/b]'
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+            markup: True
+            font_size: 25
+        Label:
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+            text: '[color=#594712]' + '   В течение минуты замерьте пульс два раза:\n за первые 15 секунд минуты, затем за последние 15 секунд.\n Результаты запишите в соответствующие поля.' + '[/color]'
+            markup: True
+        Label:
+            id: timer_label2
+            text: '[color=#594712]' +'Время: 0 / 60 сек' + '[/color]'
+            font_size: 20
+            markup: True
+        Label:
+            id: status_label2
+            text: '[color=#594712]' + '' + '[/color]'
+            font_size: 20
+            markup: True
+        TextInput:
+            id: first_15_pulse
+            input_filter: 'int'
+            multiline: False
+            size_hint: 0.9,0.2
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+            hint_text: 'Запишите здесь ваш пульс за первые 15 секунд'
+        TextInput:
+            id: last_15_pulse
+            input_filter: 'int'
+            multiline: False
+            size_hint: 0.9,0.2
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+            hint_text: 'А здесь за последние 15 секунд'
+        Button:
+            background_color: '#5e490f'
+            id: btn_text
+            text: 'Запустить таймер'
+            size_hint: 0.25,0.25
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+            on_release:
+                root.start()
+                root.next()
+<Screen5>:
+    name: 'screen5'
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        padding: 10
+        Label:
+            id: text_index
+            text: '[color=#594712]' + '' + '[/color]'
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+            font_size: 20
+            markup: True
+        Label:
+            id: txt_data
+            text: '[color=#594712]' + '' + '[/color]'
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+            font_size: 20
+            markup: True
+        Button:
+            background_color: '#5e490f'
+            text: 'Результаты'
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+            size_hint: 0.25,0.25
+            on_release:
+                root.res()
